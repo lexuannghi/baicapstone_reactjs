@@ -155,10 +155,11 @@ const MoviesRowContainer = styled.div`
     font-size: 18px;
     user-select: none;
   }
+
   .btnLeft {
     position: absolute;
     top: 50%;
-    left: 45px;
+    left: 15px;
     z-index: 20;
     transform-origin: center;
     cursor: pointer;
@@ -170,13 +171,15 @@ const MoviesRowContainer = styled.div`
     align-items: center;
     transform: translateY(-30%);
 
-    @media screen and (max-width: 600px) {
-      width: 45px !important;
-      height: 62px !important;
+    @media screen and (max-width: 768px) {
+      width: 35px !important;
+      height: 45px !important;
+      top: 55%;
     }
     @media screen and (max-width: 425px) {
-      width: 40px !important;
-      height: 60px !important;
+      width: 30px !important;
+      height: 40px !important;
+      top: 55%;
     }
     &:hover {
       background-color: rgba(0, 0, 0, 0.89);
@@ -187,6 +190,7 @@ const MoviesRowContainer = styled.div`
     }
     svg {
       opacity: 0.7;
+      margin-right: 3px;
       font-size: 46px;
       transition: all 0.2s linear;
     }
@@ -199,7 +203,7 @@ const MoviesRowContainer = styled.div`
   .btnRight {
     position: absolute;
     top: 50%;
-    right: 45px;
+    right: 15px;
     z-index: 20;
     transform-origin: center;
     cursor: pointer;
@@ -210,13 +214,16 @@ const MoviesRowContainer = styled.div`
     display: flex;
     align-items: center;
     transform: translateY(-30%);
-    @media screen and (max-width: 600px) {
-      width: 45px !important;
-      height: 62px !important;
+
+    @media screen and (max-width: 768px) {
+      width: 35px !important;
+      height: 45px !important;
+      top: 55%;
     }
     @media screen and (max-width: 425px) {
-      width: 40px !important;
-      height: 60px !important;
+      width: 30px !important;
+      height: 40px !important;
+      top: 55%;
     }
     &:hover {
       background-color: rgba(0, 0, 0, 0.89);
