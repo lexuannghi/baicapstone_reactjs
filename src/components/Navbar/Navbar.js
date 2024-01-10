@@ -9,6 +9,7 @@ function Navbar() {
   const [showModal, setShowModal] = useState(false);
   const [showOverlayUser, setShowOverlayUser] = useState(false);
   const [isSearchPage, setIsSearchPage] = useState(window.location.pathname === "/search");
+  const [searchCompleted, setSearchCompleted] = useState(false);
 
   const handleChangeInput = (e) => {
     const newKeywords = e.target.value;
@@ -17,6 +18,12 @@ function Navbar() {
     if (isSearchPage) {
       const newUrl = `/search?keywords=${encodeURIComponent(newKeywords)}`;
       window.history.replaceState(null, "", newUrl);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      navigateToSearch();
     }
   };
 
@@ -36,17 +43,15 @@ function Navbar() {
       ? `/search?keywords=${encodeURIComponent(trimmedKeywords)}`
       : "/";
     window.location.href = newUrl;
+    localStorage.setItem("searchKeywords", trimmedKeywords);
+    setSearchCompleted(true);
   };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      navigateToSearch();
-    }
-  };
-
   useEffect(() => {
-    localStorage.setItem("searchKeywords", keywords);
-  }, [keywords]);
+    if (!isSearchPage && searchCompleted) {
+      setKeywords("");
+      setSearchCompleted(false);
+    }
+  }, [isSearchPage, searchCompleted]);
 
   const [scrollNav, setScrollNav] = useState(false);
 
@@ -61,6 +66,20 @@ function Navbar() {
 
     return () => {
       window.removeEventListener("scroll", handleScrollNav);
+    };
+  }, []);
+
+  useEffect(() => {
+    setKeywords("");
+
+    const handlePathChange = () => {
+      setIsSearchPage(window.location.pathname === "/search");
+    };
+
+    window.addEventListener("popstate", handlePathChange);
+
+    return () => {
+      window.removeEventListener("popstate", handlePathChange);
     };
   }, []);
 
@@ -80,13 +99,15 @@ function Navbar() {
 
   const handleLogoClick = () => {
     window.location.href = "/";
+    setSearchCompleted(false);
+    setKeywords("");
   };
 
   return (
     <Navigation
       style={{
-        backgroundColor: scrollNav < 250 ? "transparent" : "var(--color-background)",
-        boxShadow: scrollNav < 250 ? "none" : "0px 4px 6px rgba(0, 0, 0, 0.55)",
+        backgroundColor: scrollNav < 160 ? "transparent" : "var(--color-background)",
+        boxShadow: scrollNav < 160 ? "none" : "0px 4px 6px rgba(0, 0, 0, 0.55)",
       }}>
       <div className="navContainer">
         <div className="logo" onClick={handleLogoClick}>
@@ -200,6 +221,7 @@ const Navigation = styled.div`
       .iconUser {
         width: 20px;
         height: 20px;
+        margin-right: 22px;
         cursor: pointer;
         color: #aaaaaa;
         transform: translateY(2px);

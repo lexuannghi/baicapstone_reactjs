@@ -15,7 +15,7 @@ const Footer = () => {
       <FooterContent>
         <h2>Developer Editor</h2>
         <a title="Send Email" onClick={handleEmailClick}>
-          Email: nghile2k01@gmail.com
+          nghile2k01@gmail.com
         </a>
       </FooterContent>
     </FooterContainer>

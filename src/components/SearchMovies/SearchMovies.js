@@ -9,6 +9,7 @@ function SearchMovies(props) {
   const dispatch = useDispatch();
   const { SearchMovies } = useSelector((state) => state.infoMovies);
   const [keywords, setKeywords] = useState(getQueryParameter("keywords") || "");
+  const [searching, setSearching] = useState(false); // Thêm state searching
 
   const handleChangeInput = (e) => {
     const newKeywords = e.target.value;
@@ -20,12 +21,20 @@ function SearchMovies(props) {
 
   useEffect(() => {
     if (keywords) {
+      setSearching(true);
       dispatch(getSearchMovies(keywords));
+    } else {
+      setSearching(false);
     }
   }, [keywords, dispatch]);
 
   return (
     <SearchPane>
+      {searching ? (
+        <div className="searchInfo">
+          <p>Search results "{keywords}"</p>
+        </div>
+      ) : null}
       {SearchMovies && SearchMovies.length > 0 ? (
         <div
           className="searchContent"
@@ -71,16 +80,26 @@ export default SearchMovies;
 
 const SearchPane = styled.div`
   width: 100%;
-  min-height: 80vh;
-  padding-top: 80px;
+  min-height: 88.8vh;
+  padding-top: 90px;
   background-color: var(--color-background);
   transition: all 0.3s linear;
-  overflow: hidden;
-
+  .searchInfo {
+    width: 100%;
+    padding: 0 40px;
+    margin: 0 auto;
+    margin-top: 10px;
+    color: var(--color-white);
+    font-weight: 500;
+    font-size: 22px;
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
   .searchContent {
-    padding: 40px 60px;
+    padding: 10px 40px 50px 40px;
     display: grid;
-    gap: 8px;
+    gap: 10px;
     overflow: hidden;
 
     &:hover .movieItem {
@@ -107,6 +126,7 @@ const SearchPane = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 5px;
       }
 
       span {
@@ -119,14 +139,17 @@ const SearchPane = styled.div`
         background: rgba(0, 0, 0, 0.5);
         color: var(--color-white);
         font-weight: 600;
+        border-radius: 0 0 5px 5px;
       }
     }
   }
 `;
 
 const NotFound = styled.div`
-  padding: 5rem 8rem;
   color: var(--color-white);
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
 `;
 
 // Hàm lấy tham số từ URL

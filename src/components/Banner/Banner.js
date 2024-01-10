@@ -54,7 +54,12 @@ const BannerContainer = styled.div`
         font-size: 40px;
       }
       @media only screen and (max-width: 600px) {
+        max-width: 550px;
         font-size: 32px;
+      }
+      @media only screen and (max-width: 600px) {
+        max-width: 350px;
+        font-size: 30px;
       }
     }
     .textIntro {
@@ -70,6 +75,9 @@ const BannerContainer = styled.div`
       @media only screen and (max-width: 600px) {
         max-width: 430px;
         font-size: 14px;
+      }
+      @media only screen and (max-width: 425px) {
+        max-width: 350px;
       }
     }
   }
