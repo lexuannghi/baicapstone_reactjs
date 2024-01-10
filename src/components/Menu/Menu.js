@@ -7,6 +7,7 @@ import { FaUserSecret } from "react-icons/fa6";
 import { PiGhost } from "react-icons/pi";
 import styled from "styled-components";
 import MenuItem from "./MenuItem";
+
 function Menus(props) {
   return (
     <MenuPane>
@@ -21,11 +22,10 @@ function Menus(props) {
     </MenuPane>
   );
 }
-export default Menus;
 
 const MenuPane = styled.div`
   position: fixed;
-  left: 0;
+  right: 0;
   top: 18%;
   width: 46px;
   padding: 4px 0;
@@ -35,30 +35,37 @@ const MenuPane = styled.div`
   z-index: 100;
   display: flex;
   flex-direction: column;
-  transform-origin: left center;
+  transform-origin: right center;
   transition: all 0.3s linear;
   overflow: hidden;
+
   &:hover {
     width: 180px;
     background: rgba(0, 0, 0, 0.91);
   }
+
   .subMenu {
     display: flex;
     align-items: center;
     width: max-content;
     padding: 4px 6px;
     cursor: pointer;
+
     .icon {
       font-size: 34px;
-      margin-right: 10px;
+      margin-right: 10px; /* Đặt margin-right thay vì margin-left */
     }
+
     span {
       font-size: 16px;
       font-weight: 400;
       color: rgba(300, 300, 300, 0.7);
+
       &:hover {
         color: #fff;
       }
     }
   }
 `;
+
+export default Menus;

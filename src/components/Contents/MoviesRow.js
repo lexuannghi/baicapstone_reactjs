@@ -15,7 +15,7 @@ function MoviesRow(props) {
   const [isDrag, setIsDrag] = useState(false);
   const windowWidth = useViewport()[0];
   const dispatch = useDispatch();
-  
+
   const handleSetMovie = (movie) => {
     dispatch(setMovieDetail(movie));
   };
@@ -42,7 +42,25 @@ function MoviesRow(props) {
       );
     }
   };
+  const [touchStart, setTouchStart] = useState(0);
+  const onTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX);
+  };
 
+  const onTouchMove = (e) => {
+    const touchMove = e.touches[0].clientX;
+    const delta = touchStart - touchMove;
+
+    if (delta > 30) {
+      handleScrollRight();
+    } else if (delta < -30) {
+      handleScrollLeft();
+    }
+  };
+
+  const onTouchEnd = () => {
+    setTouchStart(0);
+  };
   useEffect(() => {
     if (isDrag) {
       if (dragMove < dragDown) handleScrollRight();
@@ -72,6 +90,9 @@ function MoviesRow(props) {
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
         onDragEnter={onDragEnter}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
         style={{
           gridTemplateColumns: `repeat(${movies.length},
           ${
@@ -80,8 +101,12 @@ function MoviesRow(props) {
               : windowWidth > 992
               ? "300px"
               : windowWidth > 768
+              ? "280px"
+              : windowWidth > 600
               ? "250px"
-              : "200px"
+              : windowWidth > 425
+              ? "200px"
+              : "185px"
           })`,
         }}>
         {movies &&
@@ -144,6 +169,15 @@ const MoviesRowContainer = styled.div`
     display: flex;
     align-items: center;
     transform: translateY(-30%);
+
+    @media screen and (max-width: 600px) {
+      width: 45px !important;
+      height: 62px !important;
+    }
+    @media screen and (max-width: 425px) {
+      width: 40px !important;
+      height: 60px !important;
+    }
     &:hover {
       background-color: rgba(0, 0, 0, 0.89);
     }
@@ -176,6 +210,14 @@ const MoviesRowContainer = styled.div`
     display: flex;
     align-items: center;
     transform: translateY(-30%);
+    @media screen and (max-width: 600px) {
+      width: 45px !important;
+      height: 62px !important;
+    }
+    @media screen and (max-width: 425px) {
+      width: 40px !important;
+      height: 60px !important;
+    }
     &:hover {
       background-color: rgba(0, 0, 0, 0.89);
     }
@@ -224,6 +266,11 @@ const MoviesSlider = styled.div`
     transform: center left;
     position: relative;
     transform: scale(1) translateZ(0);
+    @media screen and (max-width: 425px) {
+      max-width: 1000px !important;
+      max-height: 5000px !important;
+    }
+
     &:hover {
       opacity: 1;
       transform: scale(1.11);

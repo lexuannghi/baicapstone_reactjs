@@ -180,11 +180,14 @@ const Navigation = styled.div`
         transition: width 0.5s ease;
 
         &:focus {
-          padding-left: 26px;
+          padding-left: 28px;
           width: 300px;
           cursor: text;
           opacity: 1;
           border-radius: 4px;
+          @media screen and (max-width: 425px) {
+            width: 200px;
+          }
         }
       }
     }

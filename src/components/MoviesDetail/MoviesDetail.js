@@ -87,11 +87,15 @@ const MoviesDetailModal = styled.div`
     color: white;
     box-shadow: 0 15px 40px rgba(var(--color-dark), 0.2);
     transition: all 0.3s ease;
+    object-fit: cover;
     @media screen and (max-width: 1184px) {
       height: 70%;
     }
     @media screen and (max-width: 600px) {
-      height: 80%;
+      height: 65%;
+    }
+    @media screen and (max-width: 425px) {
+      height: 68%;
     }
   }
   .container {
@@ -119,11 +123,12 @@ const MoviesDetailModal = styled.div`
       color: var(--color-white);
       font-size: 20px;
       padding-top: 30px;
-
-      @media screen and (max-width: 600px) {
+      overflow: hidden;
+      @media screen and (max-width: 800px) {
         font-size: 16px;
-        width: 80%;
+        width: 95% !important;
       }
+
       .movieTitle {
         margin-top: 30px;
       }
@@ -153,6 +158,7 @@ const MoviesDetailModal = styled.div`
         color: rgba(255, 255, 255, 0.6);
         line-height: 1.4;
         font-size: 18px;
+        padding-bottom: 20px;
         @media screen and (max-width: 600px) {
           font-size: 14px;
         }
@@ -160,7 +166,7 @@ const MoviesDetailModal = styled.div`
     }
   }
   .showModal {
-    top: 15%;
+    top: 16%;
     opacity: 1;
     left: 0;
     visibility: visible;

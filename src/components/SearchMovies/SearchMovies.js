@@ -14,7 +14,6 @@ function SearchMovies(props) {
     const newKeywords = e.target.value;
     setKeywords(newKeywords);
 
-    // Lưu từ khóa vào URL mà không làm tải lại trang
     const newUrl = `${window.location.pathname}?keywords=${encodeURIComponent(newKeywords)}`;
     window.history.replaceState(null, "", newUrl);
   };
@@ -72,15 +71,17 @@ export default SearchMovies;
 
 const SearchPane = styled.div`
   width: 100%;
-  min-height: 90vh;
+  min-height: 80vh;
   padding-top: 80px;
   background-color: var(--color-background);
   transition: all 0.3s linear;
+  overflow: hidden;
 
   .searchContent {
     padding: 40px 60px;
     display: grid;
     gap: 8px;
+    overflow: hidden;
 
     &:hover .movieItem {
       opacity: 0.7;
@@ -93,7 +94,6 @@ const SearchPane = styled.div`
       height: 200px;
       border-radius: 12px;
       margin: 20px 0;
-      overflow: hidden;
       transform: scale(1);
       transition: all 0.3s linear;
 
