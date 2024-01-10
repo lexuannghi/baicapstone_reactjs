@@ -291,5 +291,8 @@ const MoviesSlider = styled.div`
     text-align: center;
     font-size: 18px;
     background-color: rgba(0, 0, 0, 0.67);
+    @media screen and (max-width: 425px) {
+      font-size: 14px;
+    }
   }
 `;

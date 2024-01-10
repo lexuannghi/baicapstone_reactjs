@@ -156,21 +156,23 @@ const Navigation = styled.div`
     justify-content: flex-start;
     flex-direction: row;
     height: 100%;
-
     .logo {
-      max-width: 270px;
+      margin: 0 20px;
+      max-width: 130px;
       cursor: pointer;
+      object-fit: cover;
 
       img {
         width: 100%;
       }
 
       @media only screen and (max-width: 600px) {
-        max-width: 210px;
+        max-width: 110px;
       }
     }
 
     .navSearch {
+      margin-left: 20px;
       color: var(--color-white);
       padding-right: 20px;
       display: flex;

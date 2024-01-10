@@ -53,7 +53,7 @@ const MenuPane = styled.div`
 
     .icon {
       font-size: 34px;
-      margin-right: 10px; /* Đặt margin-right thay vì margin-left */
+      margin-right: 10px;
     }
 
     span {

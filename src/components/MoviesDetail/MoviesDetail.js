@@ -2,6 +2,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { setMovieDetail } from "../store/action";
 import { useDispatch } from "react-redux";
+import { IoMdClose } from "react-icons/io";
 
 // const showModal = false;
 function MoviesDetail(props) {
@@ -30,6 +31,7 @@ function MoviesDetail(props) {
         }>
         <div className="container">
           <div className="movieInfo">
+            <IoMdClose title="Close" className="closeButton" onClick={handleCloseModal} />
             <h1 className="movieTitle">{movie && (movie.title || movie.name)}</h1>
             <p className="statistical">
               <span className="rating">Rating: {movie && movie.vote_average}</span>
@@ -116,13 +118,18 @@ const MoviesDetailModal = styled.div`
     @media screen and (max-width: 600px) {
       background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 60%, transparent);
     }
+    .closeButton {
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+    }
     .movieInfo {
       width: 65%;
       height: 100%;
       padding-left: 24px;
       color: var(--color-white);
       font-size: 20px;
-      padding-top: 30px;
+      padding-top: 25px;
       overflow: hidden;
       @media screen and (max-width: 800px) {
         font-size: 16px;
@@ -130,7 +137,7 @@ const MoviesDetailModal = styled.div`
       }
 
       .movieTitle {
-        margin-top: 30px;
+        margin-top: 10px;
       }
       .statistical {
         margin-top: 20px;
