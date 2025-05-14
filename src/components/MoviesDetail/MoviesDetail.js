@@ -81,15 +81,16 @@ const MoviesDetailModal = styled.div`
   .modal {
     position: fixed;
     width: 100%;
-    top: 15%;
+    top: 12%;
     left: 0;
     z-index: 350;
-    height: 65%;
+    height: 75%;
     margin: 0 auto;
     color: white;
     box-shadow: 0 15px 40px rgba(var(--color-dark), 0.2);
     transition: all 0.3s ease;
     object-fit: cover;
+
     @media screen and (max-width: 1184px) {
       height: 70%;
     }
@@ -173,11 +174,14 @@ const MoviesDetailModal = styled.div`
     }
   }
   .showModal {
-    top: 16%;
+    top: 15%;
     opacity: 1;
     left: 0;
     visibility: visible;
     transition: 0.45s ease-in-out;
+    @media screen and (min-width: 1200px) {
+      top: 12%;
+    }
   }
   .hideModal {
     top: 0;

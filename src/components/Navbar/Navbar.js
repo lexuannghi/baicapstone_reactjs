@@ -106,8 +106,8 @@ function Navbar() {
   return (
     <Navigation
       style={{
-        backgroundColor: scrollNav < 160 ? "transparent" : "var(--color-background)",
-        boxShadow: scrollNav < 160 ? "none" : "0px 4px 6px rgba(0, 0, 0, 0.55)",
+        backgroundColor: scrollNav < 120 ? "transparent" : "var(--color-background)",
+        boxShadow: scrollNav < 120 ? "none" : "0px 4px 6px rgba(0, 0, 0, 0.55)",
       }}>
       <div className="navContainer">
         <div className="logo" onClick={handleLogoClick}>
